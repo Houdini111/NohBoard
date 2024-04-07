@@ -47,53 +47,53 @@ namespace ThoNohT.NohBoard.Keyboard.ElementDefinitions
         [DataMember]
         public bool ChangeOnCaps { get; private set; }
 
-		/// <summary>
-		/// Indicates if all keys codes must be pressed (false) to be pressed or if any (true) can be pressed
-		/// </summary>
-		[DataMember]
-		public bool KeyCodesOrMode { get; private set; }
+	/// <summary>
+	/// Indicates if all keys codes must be pressed (false) to be pressed or if any (true) can be pressed
+	/// </summary>
+	[DataMember]
+	public bool KeyCodesOrMode { get; private set; }
 
 
-		#endregion Properties
+	#endregion Properties
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="KeyboardKeyDefinition" /> class.
-		/// </summary>
-		/// <param name="id">The identifier of the key.</param>
-		/// <param name="boundaries">The boundaries.</param>
-		/// <param name="keyCodes">The keycodes.</param>
-		/// <param name="normalText">The normal text.</param>
-		/// <param name="shiftText">The shift text.</param>
-		/// <param name="changeOnCaps">Whether to change to shift text on caps lock.</param>
-		/// <param name="textPosition">The new text position.
-		/// If not provided, the new position will be recalculated from the bounding box of the key.</param>
-		/// <param name="manipulation">The current manipulation.</param>
+	/// <summary>
+	/// Initializes a new instance of the <see cref="KeyboardKeyDefinition" /> class.
+	/// </summary>
+	/// <param name="id">The identifier of the key.</param>
+	/// <param name="boundaries">The boundaries.</param>
+	/// <param name="keyCodes">The keycodes.</param>
+	/// <param name="normalText">The normal text.</param>
+	/// <param name="shiftText">The shift text.</param>
+	/// <param name="changeOnCaps">Whether to change to shift text on caps lock.</param>
+	/// <param name="textPosition">The new text position.
+	/// If not provided, the new position will be recalculated from the bounding box of the key.</param>
+	/// <param name="manipulation">The current manipulation.</param>
         /// <param name="keyCodesOrMode">The key definition should allow any key code to trigger it</param>
-		public KeyboardKeyDefinition(
-			int id,
-			List<TPoint> boundaries,
-			List<int> keyCodes,
-			string normalText,
-			string shiftText,
-			bool changeOnCaps,
-			TPoint textPosition = null,
-			ElementManipulation manipulation = null,
-			bool keyCodesOrMode = true) : base(id, boundaries, keyCodes, normalText, textPosition, manipulation)
-		{
-			this.ShiftText = shiftText;
-			this.ChangeOnCaps = changeOnCaps;
-			this.KeyCodesOrMode = keyCodesOrMode;
-		}
+	public KeyboardKeyDefinition(
+		int id,
+		List<TPoint> boundaries,
+		List<int> keyCodes,
+		string normalText,
+		string shiftText,
+		bool changeOnCaps,
+		TPoint textPosition = null,
+		ElementManipulation manipulation = null,
+		bool keyCodesOrMode = true) : base(id, boundaries, keyCodes, normalText, textPosition, manipulation)
+	{
+		this.ShiftText = shiftText;
+		this.ChangeOnCaps = changeOnCaps;
+		this.KeyCodesOrMode = keyCodesOrMode;
+	}
 
 
-		/// <summary>
-		/// Renders the key in the specified surface.
-		/// </summary>
-		/// <param name="g">The GDI+ surface to render on.</param>
-		/// <param name="pressed">A value indicating whether to render the key in its pressed state or not.</param>
-		/// <param name="shift">A value indicating whether shift is pressed during the render.</param>
-		/// <param name="capsLock">A value indicating whether caps lock is pressed during the render.</param>
-		public void Render(Graphics g, bool pressed, bool shift, bool capsLock)
+	/// <summary>
+	/// Renders the key in the specified surface.
+	/// </summary>
+	/// <param name="g">The GDI+ surface to render on.</param>
+	/// <param name="pressed">A value indicating whether to render the key in its pressed state or not.</param>
+	/// <param name="shift">A value indicating whether shift is pressed during the render.</param>
+	/// <param name="capsLock">A value indicating whether caps lock is pressed during the render.</param>
+	public void Render(Graphics g, bool pressed, bool shift, bool capsLock)
         {
             var style = GlobalSettings.CurrentStyle.TryGetElementStyle<KeyStyle>(this.Id)
                             ?? GlobalSettings.CurrentStyle.DefaultKeyStyle;
